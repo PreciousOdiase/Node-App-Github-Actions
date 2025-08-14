@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x] # Only Node versions fully compatible
+        node-version: [18.x, 20.x] # Only Node versions fully compatible
 
     steps:
       # Checkout the repo

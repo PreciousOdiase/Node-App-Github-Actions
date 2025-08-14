@@ -1,0 +1,27 @@
+{
+  "name": "node-app-github-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PreciousOdiase/Node-App-Github-Actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PreciousOdiase/Node-App-Github-Actions/issues"
+  },
+  "homepage": "https://github.com/PreciousOdiase/Node-App-Github-Actions#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
+  }
+}

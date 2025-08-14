@@ -1,12 +1,10 @@
-# .github/workflows/node.js.yml
 name: Node.js CI
 
 on:
   push:
     branches: [ main ]
     paths-ignore:
-      - 'README.md'
-      - '*.md'  
+      - 'README.md'      # ✅ Don't trigger when README changes
   pull_request:
     branches: [ main ]
 
@@ -16,27 +14,38 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x] # Only Node versions fully compatible
+        node-version: [18.x, 20.x]  # ✅ Updated to modern Node versions
 
     steps:
-      # Checkout the repo
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # Set up Node.js
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      # Install dependencies
-      - name: Install dependencies
-        run: npm ci
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
-      # Optional build step
-      - name: Build (if present)
-        run: npm run build --if-present
+    - name: Install dependencies
+      run: npm ci
 
-      # Run tests
-      - name: Run tests
-        run: npm test
+    - name: Lint code
+      run: npm run lint
+
+    - name: Run tests
+      run: npm test
+
+    - name: Build (if present)
+      run: npm run build --if-present
+
+    # Placeholder deployment step
+    - name: Deploy
+      if: github.ref == 'refs/heads/main'
+      run: echo "🚀 Deployment step would go here"

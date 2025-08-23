@@ -25,9 +25,9 @@ jobs:
         - run: npm run lint
         
     scan:
-      name: gitleaks
-      needs: build
       runs-on: ubuntu-latest
+      needs: build
+      
       steps:
         - name: Checkout-code
         - uses: actions/checkout@v4

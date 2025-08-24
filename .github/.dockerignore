@@ -1,0 +1,19 @@
+# Dependency Directories
+node_modules
+
+# Version Control
+.git
+.gitignore
+
+# Build Tooling and Logs
+npm-debug.log
+npm-error.log
+dist/ 
+build/
+
+# Docker Build Files
+.dockerignore
+
+# Local Environment/Config Files
+.env
+*.local
